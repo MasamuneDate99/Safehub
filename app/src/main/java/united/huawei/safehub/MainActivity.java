@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(loadScreen);
                 finish();
             }
-        }, 5*1000);
+        }, 3*1000);
     }
 }
