@@ -14,10 +14,8 @@
         android:layout_height="match_parent"
         map:uiCompass="true"
         map:uiZoomControls="true"
-        map:cameraTargetLat="48.893478"
-        map:cameraTargetLng="2.334595"
+        map:cameraTargetLat="-6.218805"
+        map:cameraTargetLng="106.802604"
 
-        map:cameraZoom="10" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+        map:cameraZoom="15" />
 </androidx.constraintlayout.widget.ConstraintLayout>
