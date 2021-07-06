@@ -13,13 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent loadScreen = new Intent(MainActivity.this, MainMenu.class);
-                startActivity(loadScreen);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent loadScreen = new Intent(MainActivity.this, MainMenu.class);
+            startActivity(loadScreen);
+            finish();
         }, 3*1000);
     }
 }
