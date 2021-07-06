@@ -15,10 +15,18 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.main_menu);
 
         Button mapbtn= findViewById(R.id.maps);
+        Button privacyBtn = findViewById(R.id.privacyPolicy);
         mapbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainMenu.this, MapsActivity.class));
+            }
+        });
+
+        privacyBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
