@@ -2,4 +2,6 @@
     <string name="app_name">Safehub</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="maps">Maps</string>
+    <string name="privacyPolicy">Privacy Policy and ToS</string>
 </resources>
