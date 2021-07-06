@@ -22,7 +22,6 @@ public class MainMenu extends AppCompatActivity {
                 startActivity(new Intent(MainMenu.this, MapsActivity.class));
             }
         });
-
         privacyBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
