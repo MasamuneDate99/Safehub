@@ -55,4 +55,5 @@ dependencies {
     implementation 'com.huawei.hms:maps:5.3.0.300'
     implementation 'com.huawei.hms:push:5.3.0.304'
     implementation 'com.huawei.agconnect:agconnect-appmessaging:1.5.2.300'
+    implementation 'com.android.volley:volley:1.2.0'
 }
