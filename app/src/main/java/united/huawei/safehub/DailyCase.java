@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,23 +45,29 @@ public class DailyCase extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("update");
-                            JSONArray jsonArrayB = response.getJSONArray("penambahan");
-                            for (int i = 0;i<1; i++) {
-                                JSONObject dataHarian = jsonArrayB.getJSONObject(i);
+                            //JSONArray jsonArray = response.getJSONArray("data");
+                            //for (int i = 0;i < jsonArray.length(); i++) {
+                                JSONObject dataHarian = response.getJSONObject("data");
+                                JSONObject dataTotal = response.getJSONObject("update").getJSONObject("penambahan");
 
-                                int Positif = dataHarian.getInt("jumlah_positif");
-                                int Meninggal = dataHarian.getInt("jumlah_meninggal");
-                                int Sembuh = dataHarian.getInt("jumlah_sembuh");
-                                int Dirawat = dataHarian.getInt("jumlah_dirawat");
-                                String TanggalKasus = dataHarian.getString("tanggal");
+                                int Odp = dataHarian.getInt("id");
+                                int Pdp = dataHarian.getInt("jumlah_odp");
 
-                                dataCovid.append("Jumlah Positif : " + Positif + "\n"
-                                + "Jumlah Meninggal" + Meninggal + "\n"
-                                + "Jumlah Sembuh" + Sembuh + "\n"
-                                + "Jumlah Dirawat" + Dirawat + "\n"
+                                int Positif = dataTotal.getInt("jumlah_positif");
+                                int Meninggal = dataTotal.getInt("jumlah_meninggal");
+                                int Sembuh = dataTotal.getInt("jumlah_sembuh");
+                                int Dirawat = dataTotal.getInt("jumlah_dirawat");
+                                String TanggalKasus = dataTotal.getString("tanggal");
+
+                                dataCovid.append("COVID-19 Data" + "\n"
+                                + "Jumlah ODP : " + String.valueOf(Odp) + "\n"
+                                + "Jumlah PDP : " + String.valueOf(Pdp) + "\n"
+                                + "Jumlah Positif : " + String.valueOf(Positif) + "\n"
+                                + "Jumlah Meninggal : " + String.valueOf(Meninggal) + "\n"
+                                + "Jumlah Sembuh" + String.valueOf(Sembuh) + "\n"
+                                + "Jumlah Dirawat" + String.valueOf(Dirawat) + "\n"
                                 + "Tanggal Kasus Harian" + TanggalKasus + "\n\n");
-                            }
+                            //}
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
