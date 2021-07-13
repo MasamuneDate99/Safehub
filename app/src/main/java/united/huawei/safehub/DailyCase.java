@@ -58,9 +58,9 @@ public class DailyCase extends AppCompatActivity {
 
                             dataCovidB.append("Jumlah Positif : " + String.valueOf(Positif) + "\n"
                                     + "Jumlah Meninggal : " + String.valueOf(Meninggal) + "\n"
-                                    + "Jumlah Sembuh" + String.valueOf(Sembuh) + "\n"
-                                    + "Jumlah Dirawat" + String.valueOf(Dirawat) + "\n"
-                                    + "Tanggal Kasus Harian" + TanggalKasus + "\n\n");
+                                    + "Jumlah Sembuh : " + String.valueOf(Sembuh) + "\n"
+                                    + "Jumlah Dirawat : " + String.valueOf(Dirawat) + "\n"
+                                    + "Tanggal Kasus Harian : " + TanggalKasus + "\n\n");
                             titleMain.append("Indonesian COVID-19 Information");
                             titleDaily.append("Daily Case");
                         } catch (JSONException e) {
