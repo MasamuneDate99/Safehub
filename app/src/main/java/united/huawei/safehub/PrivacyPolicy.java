@@ -1,4 +1,6 @@
 package united.huawei.safehub;
 
-public class PrivacyPolicy {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class PrivacyPolicy extends AppCompatActivity {
 }
