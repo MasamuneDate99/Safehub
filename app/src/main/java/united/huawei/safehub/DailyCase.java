@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -37,42 +35,34 @@ public class DailyCase extends AppCompatActivity {
     private void jsonParse() {
         String dataSource = "https://data.covid19.go.id/public/api/update.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, dataSource, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject dataHarian = response.getJSONObject("data");
-                            JSONObject dataTotal = response.getJSONObject("update").getJSONObject("penambahan");
+                response -> {
+                    try {
+                        JSONObject dataHarian = response.getJSONObject("data");
+                        JSONObject dataTotal = response.getJSONObject("update").getJSONObject("penambahan");
 
-                            int Odp = dataHarian.getInt("jumlah_odp");
-                            int Pdp = dataHarian.getInt("jumlah_pdp");
+                        int Odp = dataHarian.getInt("jumlah_odp");
+                        int Pdp = dataHarian.getInt("jumlah_pdp");
 
-                            int Positif = dataTotal.getInt("jumlah_positif");
-                            int Meninggal = dataTotal.getInt("jumlah_meninggal");
-                            int Sembuh = dataTotal.getInt("jumlah_sembuh");
-                            int Dirawat = dataTotal.getInt("jumlah_dirawat");
-                            String TanggalKasus = dataTotal.getString("tanggal");
+                        int Positif = dataTotal.getInt("jumlah_positif");
+                        int Meninggal = dataTotal.getInt("jumlah_meninggal");
+                        int Sembuh = dataTotal.getInt("jumlah_sembuh");
+                        int Dirawat = dataTotal.getInt("jumlah_dirawat");
+                        String TanggalKasus = dataTotal.getString("tanggal");
 
-                            dataCovid.append("Jumlah ODP : " + String.valueOf(Odp) + "\n"
-                                + "Jumlah PDP : " + String.valueOf(Pdp) + "\n");
+                        dataCovid.append("Jumlah ODP : " + Odp + "\n"
+                            + "Jumlah PDP : " + Pdp + "\n");
 
-                            dataCovidB.append("Jumlah Positif : " + String.valueOf(Positif) + "\n"
-                                    + "Jumlah Meninggal : " + String.valueOf(Meninggal) + "\n"
-                                    + "Jumlah Sembuh : " + String.valueOf(Sembuh) + "\n"
-                                    + "Jumlah Dirawat : " + String.valueOf(Dirawat) + "\n"
-                                    + "Tanggal Kasus Harian : " + TanggalKasus + "\n\n");
-                            titleMain.append("Indonesian COVID-19 Information");
-                            titleDaily.append("Daily Case");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        dataCovidB.append("Jumlah Positif : " + Positif + "\n"
+                                + "Jumlah Meninggal : " + Meninggal + "\n"
+                                + "Jumlah Sembuh : " + Sembuh + "\n"
+                                + "Jumlah Dirawat : " + Dirawat + "\n"
+                                + "Tanggal Kasus Harian : " + TanggalKasus + "\n\n");
+                        titleMain.append("Indonesian COVID-19 Information");
+                        titleDaily.append("Daily Case");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+                }, Throwable::printStackTrace);
         dataRequest.add(request);
     }
 }
