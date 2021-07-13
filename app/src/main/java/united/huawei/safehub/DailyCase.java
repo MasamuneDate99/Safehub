@@ -44,8 +44,8 @@ public class DailyCase extends AppCompatActivity {
                             JSONObject dataHarian = response.getJSONObject("data");
                             JSONObject dataTotal = response.getJSONObject("update").getJSONObject("penambahan");
 
-                            int Odp = dataHarian.getInt("id");
-                            int Pdp = dataHarian.getInt("jumlah_odp");
+                            int Odp = dataHarian.getInt("jumlah_odp");
+                            int Pdp = dataHarian.getInt("jumlah_pdp");
 
                             int Positif = dataTotal.getInt("jumlah_positif");
                             int Meninggal = dataTotal.getInt("jumlah_meninggal");
