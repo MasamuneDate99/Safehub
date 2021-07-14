@@ -24,7 +24,7 @@ public class MainMenu extends AppCompatActivity {
         Button dailyBtn = findViewById(R.id.dailyCase);
 
         mapbtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, MapsActivity.class)));
-        privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, NotificationPush.class)));
+        privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, PrivacyPolicy.class)));
         dailyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, DailyCase.class)));
         permission();
     }
