@@ -13,6 +13,10 @@ public class PrivacyPolicy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.privacy_policy);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Privacy Policy");
+
         PrivacyPolicy = findViewById(R.id.Content);
         PrivacyPolicy.append("Privacy Policy & Terms Condition" +
                 "\n\nPrivacy Policy \n\n" +
