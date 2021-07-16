@@ -74,7 +74,6 @@ public class MainMenu extends AppCompatActivity {
 
         mapbtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, MapsActivity.class)));
         privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, PrivacyPolicy.class)));
-//        dailyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, DailyCase.class)));
         permission();
 
     }
@@ -103,11 +102,7 @@ public class MainMenu extends AppCompatActivity {
                         Manifest.permission.READ_EXTERNAL_STORAGE};
                 ActivityCompat.requestPermissions(this, strings, 2);
             }
-
         }
-
-
-
     }
 
     private void jsonParse() {
@@ -128,24 +123,20 @@ public class MainMenu extends AppCompatActivity {
                         String TanggalKasus = dataTotal.getString("tanggal");
 
                         tgl.setText((TanggalKasus));
-                        dataCovidplus.setText((Positif));
-                        dataCoviddead.setText((Meninggal));
-                        dataCovidrawat.setText((Dirawat));
-                        dataCovidsembuh.setText((Sembuh));
-                        DataSemua_ODP.setText((Odp));
-                        DataSemua_PDP.setText((Pdp));
+                        //dataCovidplus.setText((Positif));
+                        //dataCoviddead.setText((Meninggal));
+                        //dataCovidrawat.setText((Dirawat));
+                        //dataCovidsembuh.setText((Sembuh));
+                        //DataSemua_ODP.setText((Odp));
+                        //DataSemua_PDP.setText((Pdp));
 
-//                        dataCovid.append("Jumlah ODP : " + Odp + "\n"
-//                                + "Jumlah PDP : " + Pdp + "\n");
+                        dataCovidplus.append("" + Positif );
+                        dataCoviddead.append("" + Meninggal );
+                        dataCovidrawat.append("" + Dirawat);
+                        dataCovidsembuh.append("" + Sembuh);
+                        DataSemua_ODP.append("" + Odp);
+                        DataSemua_PDP.append("" + Pdp);
 
-//                        dataCovidB.append("Jumlah Positif : " + Positif + "\n"
-//                                + "Jumlah Meninggal : " + Meninggal + "\n"
-//                                + "Jumlah Sembuh : " + Sembuh + "\n"
-//                                + "Jumlah Dirawat : " + Dirawat + "\n");
-//                                + "Tanggal Kasus Harian : " + TanggalKasus + "\n\n");
-
-//                        titleMain.append("Indonesian COVID-19 Information");
-//                        titleDaily.append("Daily Case");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
