@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Safehub">
         <service
-            android:name=".NotificationPush"
+            android:name=".DemoHmsMessageService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT"></action>
@@ -40,7 +40,6 @@
         </activity>
         <activity android:name=".MainMenu" />
         <activity android:name=".DailyCase"/>
-        <activity android:name=".NotificationPush"/>
         <activity android:name=".PrivacyPolicy"/>
     </application>
 
