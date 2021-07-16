@@ -12,6 +12,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         new Handler().postDelayed(() -> {
             Intent loadScreen = new Intent(MainActivity.this, MainMenu.class);
             startActivity(loadScreen);

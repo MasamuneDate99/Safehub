@@ -10,5 +10,9 @@
     <color name="babyblue">#308ff3</color>
     <color name="bluegrotto">#1A83CC</color>
     <color name="midnightblue">#00478F</color>
+    <color name="lighrgrey">#A1A1A1</color>
+    <color name="red">#F23124</color>
+    <color name="yellow">#F2C524</color>
+    <color name="green">#27E874</color>
 
 </resources>

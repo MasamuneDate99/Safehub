@@ -39,14 +39,16 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/purple_500"
+                    android:background="@drawable/round_rect_shape"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
                     android:onClick="search"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="5dp"
                     android:shadowRadius="@integer/material_motion_duration_long_1"
-                    android:text="Search"
+                    android:text="@string/search"
                     android:radius="11dp"
+                    android:backgroundTint="@color/babyblue"
                     android:textAllCaps="false" />
 
             </LinearLayout>
