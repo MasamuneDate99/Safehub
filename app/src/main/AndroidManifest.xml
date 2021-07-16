@@ -22,8 +22,11 @@
             android:value="AppGallery"
             >
         </meta-data>
+        <meta-data
+            android:name="push_kit_auto_init_enabled"
+            android:value="true" />
         <service
-            android:name=".DemoHmsMessageService"
+            android:name=".NotificationPush"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT"></action>

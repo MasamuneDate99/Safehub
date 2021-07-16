@@ -1,10 +1,15 @@
 package united.huawei.safehub;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,11 +20,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.huawei.hms.aaid.HmsInstanceId;
 import com.huawei.hms.analytics.HiAnalytics;
 import com.huawei.hms.analytics.HiAnalyticsInstance;
 import com.huawei.hms.analytics.HiAnalyticsTools;
 import com.huawei.hms.analytics.type.HAEventType;
 import com.huawei.hms.analytics.type.HAParamType;
+import com.huawei.hms.common.ApiException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +37,8 @@ public class MainMenu extends AppCompatActivity {
     private TextView titleDaily;
     private TextView dataCovidB;
     private RequestQueue dataRequest;
+    private static final String TAG = "PushKit Token";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +75,48 @@ public class MainMenu extends AppCompatActivity {
         //dataRequest = Volley.newRequestQueue(this);
         //jsonParse();
 
+        /*
+        MyReceiver receiver = new MyReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("united.huawei.safehub.ON_NEW_TOKEN");
+        MainMenu.this.registerReceiver(receiver, filter);
+        getToken();
+        */
+
         mapbtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, MapsActivity.class)));
         privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, PrivacyPolicy.class)));
         dailyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, DailyCase.class)));
         permission();
     }
+    /*
+    private void getToken() {
+        // Create a thread.
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    // Obtain the app ID from the agconnect-service.json file.
+                    String appId = "104487543";
+
+                    // Set tokenScope to HCM.
+                    String tokenScope = "HCM";
+                    String token = HmsInstanceId.getInstance(MainMenu.this).getToken(appId, tokenScope);
+                    Log.i(TAG, "get token: " + token);
+
+                    // Check whether the token is empty.
+                    if(!TextUtils.isEmpty(token)) {
+                        sendRegTokenToServer(token);
+                    }
+                } catch (ApiException e) {
+                    Log.e(TAG, "get token failed, " + e);
+                }
+            }
+        }.start();
+    }
+    private void sendRegTokenToServer(String token) {
+        Log.i(TAG, "sending token to server. token:" + token);
+    }*/
+
     private void jsonParse() {
         String dataSource = "https://data.covid19.go.id/public/api/update.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, dataSource, null,
