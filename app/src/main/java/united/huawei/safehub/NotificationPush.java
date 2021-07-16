@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 public class NotificationPush extends HmsMessageService {
     private static final String TAG = "PushDemoToken";
+    private static final String CODELABS_ACTION = "com.huawei.codelabpush.action.ON_NEW_MESSAGE";
 
     @Override
     public void onNewToken(String token){
@@ -25,6 +26,11 @@ public class NotificationPush extends HmsMessageService {
         if (!TextUtils.isEmpty(token)) {
             refreshedTokenToServer(token);
         }
+
+        Intent intent = new Intent();
+        intent.setAction(CODELABS_ACTION);
+        intent.putExtra("method", "onNewToken");
+        intent.putExtra("msg", "onNewToken called, token : " + token);
     }
 
     private void refreshedTokenToServer(String token) {
@@ -35,16 +41,21 @@ public class NotificationPush extends HmsMessageService {
     public void onTokenError(Exception e) { super.onTokenError(e); }
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage){
-        super.onMessageReceived(remoteMessage);
-        if(remoteMessage.getData().length() > 0 ){
-            Log.i(TAG, "Message data payload : " + remoteMessage.getData());
+    public void onMessageReceived(RemoteMessage message){
+        super.onMessageReceived(message);
+        if(message.getData().length() > 0 ){
+            Log.i(TAG, "Message data payload : " + message.getData());
         }
-        if(remoteMessage.getNotification() != null ){
-            Log.i(TAG, "Message Notification Body : " + remoteMessage.getNotification().getBody());
+        if(message.getNotification() != null ){
+            Log.i(TAG, "Message Notification Body : " + message.getNotification().getBody());
         }
 
-        /*Log.i(TAG, "get Data: " + message.getData()
+        if(message == null ){
+            Log.e(TAG, "Received Message entity is NULL !");
+            return;
+        }
+
+        Log.i(TAG, "get Data: " + message.getData()
                 + "\n getFrom: " + message.getFrom()
                 + "\n getTo: " + message.getTo()
                 + "\n getMessageId: " + message.getMessageId()
@@ -62,7 +73,6 @@ public class NotificationPush extends HmsMessageService {
             // Process the message within 10 seconds.
             processWithin10s(message);
         }
-        */
     }
 
     private void startWorkManagerJob(RemoteMessage message) {
