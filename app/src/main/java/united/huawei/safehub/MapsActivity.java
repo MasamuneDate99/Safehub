@@ -47,9 +47,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         MapsInitializer.setApiKey("CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
         super.onCreate(savedInstanceState);
 
-        getActionBar().hide();
+        //getActionBar().hide();
 
-        btn_search.setOnClickListener((View.OnClickListener) this);
+        //btn_search.setOnClickListener((View.OnClickListener) this); (ini juga bikin error)
        // searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
       // search();
         setContentView(R.layout.activity_maps);
