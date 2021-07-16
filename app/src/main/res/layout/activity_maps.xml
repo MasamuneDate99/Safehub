@@ -34,7 +34,7 @@
 
 
                 <Button
-                    android:id="@+id/btn_search"
+                    android:id="@+id/siteBtn"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="10dp"
@@ -56,8 +56,8 @@
     </ScrollView>
 
 
-    <fragment
-        android:id="@+id/mapfragment"
+    <com.huawei.hms.maps.MapView
+        android:id="@+id/mapView"
         class="com.huawei.hms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.huawei.hms.maps.CameraUpdateFactory;
 import com.huawei.hms.maps.HuaweiMap;
+import com.huawei.hms.maps.MapView;
 import com.huawei.hms.maps.MapsInitializer;
 import com.huawei.hms.maps.OnMapReadyCallback;
 import com.huawei.hms.maps.SupportMapFragment;
@@ -33,10 +34,11 @@ import java.net.URLEncoder;
 
 import static java.security.AccessController.getContext;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,  HuaweiMap.OnMyLocationButtonClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, HuaweiMap.OnMyLocationButtonClickListener, View.OnClickListener {
     private SupportMapFragment mSupportMapFragment;
     private HuaweiMap hMap;
     Button btn_search;
+    MapView mMapView;
     EditText editText_search;
 
     private SearchService searchService;
@@ -51,12 +53,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             getSupportActionBar().hide();
         }
 
-        //btn_search.setOnClickListener((View.OnClickListener) this); (ini juga bikin error)
-       // searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
-      // search();
+        //btn_search = (Button) this.findViewById(R.id.siteBtn);
+        //btn_search.setOnClickListener(this);
+        editText_search = (EditText) this.findViewById(R.id.editText_search);
+       searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
         setContentView(R.layout.activity_maps);
-        mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapfragment);
-        mSupportMapFragment.getMapAsync(this);
+        mMapView = findViewById(R.id.mapView);
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle("MapViewBundleKey");
+        }
+        mMapView.onCreate(mapViewBundle);
+        mMapView.getMapAsync(this);
     }
     public void onMapReady(HuaweiMap huaweiMap) {
         hMap = huaweiMap;
@@ -97,7 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         hMap.setMarkersClustering(true);
     }
 
-    /*public void search(){
+    public void search(){
         TextSearchRequest textSearchRequest = new TextSearchRequest();
         Coordinate location = new Coordinate(-6.218805, 106.802604);
         textSearchRequest.setQuery(editText_search.getText().toString());
@@ -135,7 +143,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         );
     }
 
-*/
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -161,5 +169,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onMyLocationButtonClick() {
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        search();
     }
 }
