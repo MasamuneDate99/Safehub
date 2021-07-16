@@ -17,6 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Safehub">
+        <meta-data
+            android:name="install_channel"
+            android:value="AppGallery"
+            >
+        </meta-data>
         <service
             android:name=".DemoHmsMessageService"
             android:exported="false">

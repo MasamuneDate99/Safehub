@@ -15,6 +15,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.huawei.hms.analytics.HiAnalytics;
+import com.huawei.hms.analytics.HiAnalyticsInstance;
+import com.huawei.hms.analytics.HiAnalyticsTools;
+import com.huawei.hms.analytics.type.HAEventType;
+import com.huawei.hms.analytics.type.HAParamType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +34,26 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+
+        HiAnalyticsTools.enableLog();
+        HiAnalyticsInstance instance = HiAnalytics.getInstance(MainMenu.this);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("exam_difficulty", "high");
+        bundle.putString("exam_level", "1-1");
+        bundle.putString("exam_time", "20190520-08");
+        instance.onEvent("begin_examination", bundle);
+
+        Bundle bundle_pre = new Bundle();
+        bundle_pre.putString(HAParamType.PRODUCTID, "item_ID");
+        bundle_pre.putString(HAParamType.PRODUCTNAME, "name");
+        bundle_pre.putString(HAParamType.CATEGORY, "category");
+        bundle_pre.putLong(HAParamType.QUANTITY, 100L);
+        bundle_pre.putDouble(HAParamType.PRICE, 10.01);
+        bundle_pre.putDouble(HAParamType.REVENUE, 10);
+        bundle_pre.putString(HAParamType.CURRNAME, "currency");
+        bundle_pre.putString(HAParamType.PLACEID, "location_ID");
+        instance.onEvent(HAEventType.ADDPRODUCT2WISHLIST, bundle_pre);
 
         Button mapbtn= findViewById(R.id.maps);
         Button privacyBtn = findViewById(R.id.privacyPolicy);
