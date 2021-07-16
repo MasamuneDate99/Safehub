@@ -33,11 +33,11 @@ import java.net.URLEncoder;
 
 import static java.security.AccessController.getContext;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, HuaweiMap.OnMyLocationButtonClickListener, View.OnClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,  HuaweiMap.OnMyLocationButtonClickListener {
     private SupportMapFragment mSupportMapFragment;
     private HuaweiMap hMap;
-    private Button btn_search;
-    private EditText editText_search;
+    Button btn_search;
+    EditText editText_search;
 
     private SearchService searchService;
 
@@ -47,16 +47,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         MapsInitializer.setApiKey("CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
         super.onCreate(savedInstanceState);
 
-        searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
-        btn_search = findViewById(R.id.btn_search);
-        editText_search = (EditText) findViewById(R.id.editText_search);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
-
+        //btn_search.setOnClickListener((View.OnClickListener) this); (ini juga bikin error)
+       // searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
+      // search();
         setContentView(R.layout.activity_maps);
         mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapfragment);
         mSupportMapFragment.getMapAsync(this);
-        btn_search.setOnClickListener(this);
-
     }
     public void onMapReady(HuaweiMap huaweiMap) {
         hMap = huaweiMap;
@@ -97,11 +97,45 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         hMap.setMarkersClustering(true);
     }
 
-    public void search(){
+    /*public void search(){
+        TextSearchRequest textSearchRequest = new TextSearchRequest();
+        Coordinate location = new Coordinate(-6.218805, 106.802604);
+        textSearchRequest.setQuery(editText_search.getText().toString());
+        textSearchRequest.setLocation(location);
+        searchService.textSearch(textSearchRequest, new SearchResultListener<TextSearchResponse>() {
+            @Override
+            public void onSearchResult(TextSearchResponse textSearchResponse) {
+                hMap.clear();
+                StringBuilder response = new StringBuilder("\n");
+                response.append("success\n");
+                int count = 1;
+                AddressDetail addressDetail;
+                for (Site site :textSearchResponse.getSites()){
+                    addressDetail = site.getAddress();
+                    response.append(String.format(
+                            "[%s]  name: %s, formatAddress: %s, country: %s, countryCode: %s \r\n",
+                            "" + (count++),  site.getName(), site.getFormatAddress(),
+                            (addressDetail == null ? "" : addressDetail.getCountry()),
+                            (addressDetail == null ? "" : addressDetail.getCountryCode())));
 
+                    hMap.addMarker(new MarkerOptions().position(new LatLng(site.getLocation().getLat(), site.getLocation().getLng())).title(site.getName()).snippet(site.getFormatAddress()));
+
+                }
+                Log.d("SEARCH RESULTS", "search result is : " + response);
+
+            }
+
+            public void onSearchError(SearchStatus searchStatus) {
+                Log.e("SEARCH RESULTS", "onSearchError is: " + searchStatus.getErrorCode());
+            }
+
+
+        }
+
+        );
     }
 
-
+*/
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -127,45 +161,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onMyLocationButtonClick() {
         return false;
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        TextSearchRequest textSearchRequest = new TextSearchRequest();
-        Coordinate location = new Coordinate(-6.218805, 106.802604);
-        textSearchRequest.setQuery(editText_search.getText().toString());
-        textSearchRequest.setLocation(location);
-        searchService.textSearch(textSearchRequest, new SearchResultListener<TextSearchResponse>() {
-                    @Override
-                    public void onSearchResult(TextSearchResponse textSearchResponse) {
-                        hMap.clear();
-                        StringBuilder response = new StringBuilder("\n");
-                        response.append("success\n");
-                        int count = 1;
-                        AddressDetail addressDetail;
-                        for (Site site :textSearchResponse.getSites()){
-                            addressDetail = site.getAddress();
-                            response.append(String.format(
-                                    "[%s]  name: %s, formatAddress: %s, country: %s, countryCode: %s \r\n",
-                                    "" + (count++),  site.getName(), site.getFormatAddress(),
-                                    (addressDetail == null ? "" : addressDetail.getCountry()),
-                                    (addressDetail == null ? "" : addressDetail.getCountryCode())));
-
-                            hMap.addMarker(new MarkerOptions().position(new LatLng(site.getLocation().getLat(), site.getLocation().getLng())).title(site.getName()).snippet(site.getFormatAddress()));
-
-                        }
-                        Log.d("SEARCH RESULTS", "search result is : " + response);
-
-                    }
-
-                    public void onSearchError(SearchStatus searchStatus) {
-                        Log.e("SEARCH RESULTS", "onSearchError is: " + searchStatus.getErrorCode());
-                    }
-
-
-                }
-
-        );
     }
 }
