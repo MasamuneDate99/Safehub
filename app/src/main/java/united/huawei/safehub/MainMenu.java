@@ -127,13 +127,13 @@ public class MainMenu extends AppCompatActivity {
                         int Dirawat = dataTotal.getInt("jumlah_dirawat");
                         String TanggalKasus = dataTotal.getString("tanggal");
 
-                        tgl.setText("Tanggal Kasus Harian : " + TanggalKasus);
-                        dataCovidplus.setText(("Jumlah Positif : " + Positif);
-                        dataCoviddead.setText(("Jumlah Meninggal : " + Meninggal);
-                        dataCovidrawat.setText(("Jumlah Dirawat : " + Dirawat);
-                        dataCovidsembuh.setText(("Jumlah Sembuh : " + Sembuh);
-                        DataSemua_ODP.setText("Jumlah ODP : " + Odp);
-                        DataSemua_PDP.setText("Jumlah PDP : " + Pdp);
+                        tgl.setText((TanggalKasus));
+                        dataCovidplus.setText((Positif));
+                        dataCoviddead.setText((Meninggal));
+                        dataCovidrawat.setText((Dirawat));
+                        dataCovidsembuh.setText((Sembuh));
+                        DataSemua_ODP.setText((Odp));
+                        DataSemua_PDP.setText((Pdp));
 
 //                        dataCovid.append("Jumlah ODP : " + Odp + "\n"
 //                                + "Jumlah PDP : " + Pdp + "\n");
