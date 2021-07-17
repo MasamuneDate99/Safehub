@@ -48,7 +48,6 @@
                     android:layout_weight="6"
                     android:gravity="center"
                     android:textSize="18sp"
-                    android:text="Kamis, 7 Juli 2021"
                     android:textColor="@color/lighrgrey" />
 
                 <View

@@ -3,16 +3,12 @@ package united.huawei.safehub;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -28,9 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainMenu extends AppCompatActivity {
-//    private TextView dataCovid;
-//    private TextView titleMain;
-//    private TextView titleDaily;
     private TextView dataCovidplus, dataCoviddead, dataCovidrawat, dataCovidsembuh, DataSemua_PDP, DataSemua_ODP;
     private TextView tgl;
     private Button mapbtn;
@@ -56,18 +49,12 @@ public class MainMenu extends AppCompatActivity {
         DataSemua_ODP = findViewById(R.id.DataSemua_ODP);
         tgl = findViewById(R.id.tanggal);
 
-//        dataCovid = findViewById(R.id.DataSemua);
-//        Button dailyBtn = findViewById(R.id.dailyCase);
-//        titleMain = findViewById(R.id.MainTitle);
-//        titleDaily = findViewById(R.id.DailyTitle);
-
         dataRequest = Volley.newRequestQueue(this);
         jsonParse();
 
         mapbtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, MapsActivity.class)));
         privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, PrivacyPolicy.class)));
         permission();
-
     }
 
     void permission(){
