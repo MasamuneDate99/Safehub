@@ -37,9 +37,9 @@ import static java.security.AccessController.getContext;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, HuaweiMap.OnMyLocationButtonClickListener, View.OnClickListener {
     private SupportMapFragment mSupportMapFragment;
     private HuaweiMap hMap;
-    Button btn_search;
+    private Button btn_search;
     MapView mMapView;
-    EditText editText_search;
+    private EditText editText_search;
 
     private SearchService searchService;
 
@@ -47,16 +47,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MapsInitializer.setApiKey("CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
+        searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
         super.onCreate(savedInstanceState);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
-        //btn_search = (Button) this.findViewById(R.id.siteBtn);
-        //btn_search.setOnClickListener(this);
-        editText_search = (EditText) this.findViewById(R.id.editText_search);
-       searchService = SearchServiceFactory.create(this,"CgB6e3x9CrCsI3bZIZ0Th5b5BsxKfHX4JHn+Z35tjymZamno2NSIB5S9Nyxg/QCBBskLvmT57fzJHpP8ntS2Cgfq");
+
+
         setContentView(R.layout.activity_maps);
         mMapView = findViewById(R.id.mapView);
         Bundle mapViewBundle = null;
@@ -65,6 +64,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
+
+        btn_search = (Button) this.findViewById(R.id.siteBtn);
+
+        editText_search = (EditText) this.findViewById(R.id.editText_search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search();
+            }
+        });
     }
     public void onMapReady(HuaweiMap huaweiMap) {
         hMap = huaweiMap;
