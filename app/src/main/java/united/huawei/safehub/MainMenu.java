@@ -38,8 +38,7 @@ public class MainMenu extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        mapbtn= findViewById(R.id.maps);
-
+        mapbtn = findViewById(R.id.maps);
         ImageButton privacyBtn = findViewById(R.id.privacyPolicy);
         dataCovidplus = findViewById(R.id.DataHarianCovid_jmlpositif);
         dataCoviddead = findViewById(R.id.DataHarianCovid_jmlmeninggal);
@@ -56,7 +55,6 @@ public class MainMenu extends AppCompatActivity {
         privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, PrivacyPolicy.class)));
         permission();
     }
-
     void permission(){
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             if (ActivityCompat.checkSelfPermission(this,
@@ -83,7 +81,6 @@ public class MainMenu extends AppCompatActivity {
             }
         }
     }
-
     private void jsonParse() {
         String dataSource = "https://data.covid19.go.id/public/api/update.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, dataSource, null,
@@ -91,7 +88,6 @@ public class MainMenu extends AppCompatActivity {
                     try {
                         JSONObject dataHarian = response.getJSONObject("data");
                         JSONObject dataTotal = response.getJSONObject("update").getJSONObject("penambahan");
-
                         int Odp = dataHarian.getInt("jumlah_odp");
                         int Pdp = dataHarian.getInt("jumlah_pdp");
 
@@ -108,12 +104,6 @@ public class MainMenu extends AppCompatActivity {
                         SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy");
                         String date2 = sdf.format(date1);
                         tgl.setText(date2);
-                        //dataCovidplus.setText((Positif));
-                        //dataCoviddead.setText((Meninggal));
-                        //dataCovidrawat.setText((Dirawat));
-                        //dataCovidsembuh.setText((Sembuh));
-                        //DataSemua_ODP.setText((Odp));
-                        //DataSemua_PDP.setText((Pdp));
 
                         dataCovidplus.append("" + Positif );
                         dataCoviddead.append("" + Meninggal );
@@ -121,14 +111,10 @@ public class MainMenu extends AppCompatActivity {
                         dataCovidsembuh.append("" + Sembuh);
                         DataSemua_ODP.append("" + Odp);
                         DataSemua_PDP.append("" + Pdp);
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, Throwable::printStackTrace);
         dataRequest.add(request);
     }
-
-
-
 }
