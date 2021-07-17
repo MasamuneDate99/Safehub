@@ -54,9 +54,8 @@ dependencies {
     implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
     implementation 'com.huawei.hms:maps:6.0.0.301'
     implementation 'com.huawei.hms:site:6.0.0.300'
-    implementation 'com.huawei.hms:push:5.3.0.304'
     implementation 'com.huawei.agconnect:agconnect-appmessaging:1.5.2.300'
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'com.huawei.hms:location:5.0.4.300'
-    implementation 'com.huawei.hms:hianalytics:6.0.0.301'
+    implementation 'com.huawei.hms:hwid:5.0.5.301'
 }
