@@ -24,6 +24,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainMenu extends AppCompatActivity {
 //    private TextView dataCovid;
 //    private TextView titleMain;
@@ -31,7 +34,6 @@ public class MainMenu extends AppCompatActivity {
     private TextView dataCovidplus, dataCoviddead, dataCovidrawat, dataCovidsembuh, DataSemua_PDP, DataSemua_ODP;
     private TextView tgl;
     private Button mapbtn;
-    private LinearLayout greenCard, redCard, yellowCard;
     private RequestQueue dataRequest;
 
     @Override
@@ -43,16 +45,6 @@ public class MainMenu extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        greenCard = findViewById(R.id.green_rect_shape);
-        greenCard.setBackgroundColor(Color.parseColor("#27E874"));
-        yellowCard = findViewById(R.id.yellow_rect_shape);
-        yellowCard.setBackgroundColor(Color.parseColor("#F2C524"));
-        yellowCard = findViewById(R.id.yellow_rect_shape2);
-        yellowCard.setBackgroundColor(Color.parseColor("#F2C524"));
-        redCard = findViewById(R.id.red_rect_shape);
-        redCard.setBackgroundColor(Color.parseColor("#F23124"));
-        redCard = findViewById(R.id.red_rect_shape2);
-        redCard.setBackgroundColor(Color.parseColor("#F23124"));
         mapbtn= findViewById(R.id.maps);
 
         ImageButton privacyBtn = findViewById(R.id.privacyPolicy);
@@ -121,8 +113,14 @@ public class MainMenu extends AppCompatActivity {
                         int Sembuh = dataTotal.getInt("jumlah_sembuh");
                         int Dirawat = dataTotal.getInt("jumlah_dirawat");
                         String TanggalKasus = dataTotal.getString("tanggal");
-
-                        tgl.setText((TanggalKasus));
+                        //yyyy-MM-dd
+                        Date date1 = null;
+                        try{
+                            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(TanggalKasus);
+                        }catch(Exception e){ }
+                        SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy");
+                        String date2 = sdf.format(date1);
+                        tgl.setText(date2);
                         //dataCovidplus.setText((Positif));
                         //dataCoviddead.setText((Meninggal));
                         //dataCovidrawat.setText((Dirawat));

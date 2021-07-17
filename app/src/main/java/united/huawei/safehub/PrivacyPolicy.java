@@ -72,4 +72,10 @@ public class PrivacyPolicy extends AppCompatActivity {
                 "\nThese terms and conditions are effective as of 2021-07-23 \n" +
                 "\n\n Huawei AppGallery Link : https://consumer.huawei.com/minisite/cloudservice/hiapp/privacy-statement.htm?code=CN&branchid=2&language=en_US");
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

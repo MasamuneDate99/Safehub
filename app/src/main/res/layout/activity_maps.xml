@@ -26,9 +26,8 @@
                     android:layout_height="35dp"
                     android:layout_weight="1"
                     android:textSize="15dp"
-                    android:hint="Search..."
+                    android:hint="@string/searchHint"
                     android:background="@color/material_on_background_emphasis_medium"
-                    android:inputType="textEmailAddress"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="15dp"/>
@@ -48,6 +47,7 @@
                     android:shadowRadius="@integer/material_motion_duration_long_1"
                     android:text="@string/search"
                     android:radius="11dp"
+                    android:textAlignment="center"
                     android:backgroundTint="@color/babyblue"
                     android:textAllCaps="false" />
 

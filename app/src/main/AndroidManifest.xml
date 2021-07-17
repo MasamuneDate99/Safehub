@@ -22,7 +22,8 @@
             android:value="AppGallery"
             >
         </meta-data>
-        <activity android:name=".MapsActivity">
+        <activity android:name=".MapsActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <meta-data
                 android:name="com.huawei.hms.client.channel.androidMarket"
                 android:value="false" />

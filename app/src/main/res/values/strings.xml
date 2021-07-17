@@ -6,12 +6,13 @@
     <string name="dailyCase">Daily Case</string>
     <string name="requestData">Parse Data</string>
     <string name="imageDesc">Safehub logo for content filling on Daily case app</string>
-    <string name="positifDesc">Orang terkonfirmasi\npostif COVID-19</string>
+    <string name="positifDesc">Orang terkonfirmasi postif COVID-19</string>
     <string name="meninggalDesc">Orang menginggal\nakibat COVID-19</string>
     <string name="dirawatDesc">Orang dirawat\nakibat COVID-19</string>
     <string name="sembuhDesc">Orang sembuh dari COVID-19</string>
     <string name="rs">Rumah Sakit Terdekat</string>
     <string name="jmlODP">Jumlah ODP</string>
     <string name="jmlPDP">Jumlah PDP</string>
-    <string name="search">Search</string>
+    <string name="search">Cari</string>
+    <string name="searchHint">Cari nama tempat</string>
 </resources>
