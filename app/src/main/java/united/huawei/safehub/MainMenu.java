@@ -64,6 +64,7 @@ public class MainMenu extends AppCompatActivity {
         DataSemua_ODP = findViewById(R.id.DataSemua_ODP);
         tgl = findViewById(R.id.tanggal);
 
+        // TODO: Add Button and ID List untuk 3 biji dibawah ini makasih -->
         // Account Kit
         //ChangeAccBtn = findViewById(R.id."ID Logout Button");
         //SignIn = findViewByID(R.id."ID SIGN IN");
