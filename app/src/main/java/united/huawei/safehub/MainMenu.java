@@ -6,17 +6,23 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hmf.tasks.Task;
@@ -33,11 +39,13 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView dataCovidplus, dataCoviddead, dataCovidrawat, dataCovidsembuh, DataSemua_PDP, DataSemua_ODP;
     private TextView tgl;
-    private Button mapbtn, ChangeAccBtn, CancelAuth, SignIn;
+    private Button mapbtn;
     private RequestQueue dataRequest;
+
+    private DrawerLayout dl;
 
     // Account Kit Stuff
     private AccountAuthService mAuthService;
@@ -64,7 +72,19 @@ public class MainMenu extends AppCompatActivity {
         DataSemua_ODP = findViewById(R.id.DataSemua_ODP);
         tgl = findViewById(R.id.tanggal);
 
+        dl = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        dl.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView mNavigationView = findViewById(R.id.nav_view);
+
+        if (mNavigationView != null) {
+            mNavigationView.setNavigationItemSelectedListener(this);
+        }
+
         // TODO: Add Button and ID List untuk 3 biji dibawah ini makasih -->
+        //dipindahin ke paling bawah method onNavigationItemSelected
         // Account Kit
         //ChangeAccBtn = findViewById(R.id."ID Logout Button");
         //SignIn = findViewByID(R.id."ID SIGN IN");
@@ -76,11 +96,18 @@ public class MainMenu extends AppCompatActivity {
         mapbtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, MapsActivity.class)));
         privacyBtn.setOnClickListener(v -> startActivity(new Intent(MainMenu.this, PrivacyPolicy.class)));
 
-        ChangeAccBtn.setOnClickListener(v -> signOut());
-        CancelAuth.setOnClickListener(v -> cancelAuthorization());
-        SignIn.setOnClickListener(v -> silentSignInByHwId());
+//        ChangeAccBtn.setOnClickListener(v -> signOut());
+//        CancelAuth.setOnClickListener(v -> cancelAuthorization());
+//        SignIn.setOnClickListener(v -> silentSignInByHwId());
         permission();
     }
+
+    @Override
+    public void onBackPressed() {
+        if(dl.isDrawerOpen(GravityCompat.START))
+        super.onBackPressed();
+    }
+
     private void silentSignInByHwId() {
         // 1. Use AccountAuthParams to specify the user information to be obtained, including the user ID (OpenID and UnionID), email address, and profile (nickname and picture).
         // 2. By default, DEFAULT_AUTH_REQUEST_PARAM specifies two items to be obtained, that is, the user ID and profile.
@@ -215,7 +242,7 @@ public class MainMenu extends AppCompatActivity {
                         }catch(Exception e){ }
                         SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy");
                         String date2 = sdf.format(date1);
-                        tgl.setText(date2);
+                        tgl.setText("Data tanggal: " + date2);
 
                         dataCovidplus.append("" + Positif );
                         dataCoviddead.append("" + Meninggal );
@@ -228,5 +255,23 @@ public class MainMenu extends AppCompatActivity {
                     }
                 }, Throwable::printStackTrace);
         dataRequest.add(request);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.sign_in:
+                silentSignInByHwId();
+                break;
+            case R.id.change_id:
+                signOut();
+                break;
+            case R.id.cancel_auth:
+                cancelAuthorization();
+                break;
+        }
+        return true;
     }
 }

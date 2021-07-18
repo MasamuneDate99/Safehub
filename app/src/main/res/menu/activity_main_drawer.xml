@@ -1,0 +1,18 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<menu
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    tools:showIn= "navigation_view" >
+    <group
+        android:checkableBehavior= "single" >
+        <item
+            android:id= "@+id/sign_in"
+            android:title= "@string/signIn" />
+        <item
+            android:id= "@+id/change_id"
+            android:title= "@string/changeId" />
+        <item
+            android:id= "@+id/cancel_auth"
+            android:title= "@string/cancelAuth" />
+    </group>
+</menu>

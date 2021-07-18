@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Safehub</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="maps">Lihat Peta</string>
     <string name="privacyPolicy">Privacy Policy and ToS</string>
@@ -15,4 +17,7 @@
     <string name="jmlPDP">Jumlah PDP</string>
     <string name="search">Cari</string>
     <string name="searchHint">Cari nama tempat</string>
+    <string name="signIn">Sign In Huawei ID</string>
+    <string name="changeId">Change Huawei ID Account</string>
+    <string name="cancelAuth">Cancel Autorization</string>
 </resources>
