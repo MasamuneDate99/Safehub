@@ -59,9 +59,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.ic_baseline_dehaze_24);
 
         mapbtn = findViewById(R.id.maps);
         ImageButton privacyBtn = findViewById(R.id.privacyPolicy);
