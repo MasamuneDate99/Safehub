@@ -46,6 +46,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private RequestQueue dataRequest;
 
     private DrawerLayout dl;
+    private ActionBarDrawerToggle toggle;
 
     // Account Kit Stuff
     private AccountAuthService mAuthService;
@@ -73,7 +74,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         tgl = findViewById(R.id.tanggal);
 
         dl = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerIndicatorEnabled(true);
         dl.addDrawerListener(toggle);
         toggle.syncState();
 
