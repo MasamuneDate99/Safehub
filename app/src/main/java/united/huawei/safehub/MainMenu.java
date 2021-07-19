@@ -39,7 +39,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainMenu extends AppCompatActivity {
     private TextView dataCovidplus, dataCoviddead, dataCovidrawat, dataCovidsembuh, DataSemua_PDP, DataSemua_ODP;
     private TextView tgl;
     private Button mapbtn;
@@ -58,7 +58,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,11 +82,27 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         NavigationView mNavigationView = findViewById(R.id.nav_view);
 
-        if (mNavigationView != null) {
-            mNavigationView.setNavigationItemSelectedListener(this);
-        }
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
 
-        // TODO: Add Button and ID List untuk 3 biji dibawah ini makasih -->
+                switch (id){
+                    case R.id.sign_in:
+                        silentSignInByHwId();
+                        break;
+                    case R.id.change_id:
+                        signOut();
+                        break;
+                    case R.id.cancel_auth:
+                        cancelAuthorization();
+                        break;
+                }
+                return true;
+            }
+        });
+
+        //Add Button and ID List untuk 3 biji dibawah ini makasih -->
         //dipindahin ke paling bawah method onNavigationItemSelected
         // Account Kit
         //ChangeAccBtn = findViewById(R.id."ID Logout Button");
@@ -262,20 +277,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id){
-            case R.id.sign_in:
-                silentSignInByHwId();
-                break;
-            case R.id.change_id:
-                signOut();
-                break;
-            case R.id.cancel_auth:
-                cancelAuthorization();
-                break;
-        }
-        return true;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 }
